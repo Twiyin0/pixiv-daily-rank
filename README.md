@@ -18,7 +18,7 @@ npm i request
 Create a img directory under the root directory / 在根目录下创建img/目录
 Run the code under the project root directory / 在根目录下用终端运行以下代码
 ```node
-node .  #or node index.js
+node .
 ```
 
 # note / 注意
