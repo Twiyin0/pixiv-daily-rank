@@ -30,5 +30,3 @@ node .
 - 请尊重画师，在未经允许的情况下，严禁转载图片.
 - Do not run the code frequently, it may be banned.
 - 请不要频繁使用代码，以免（可访问域名）被封.
-- The function '_delayMs' is unuseful, you can delete it.
-- "_delayMs"函数是个无用函数，可以删掉.

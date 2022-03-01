@@ -3,14 +3,17 @@ const request = require('request');
 const request2 = require('request');
 const fs = require('fs');
 
-// 延迟函数，封装成Promise对象
-async function _delayMs(_xms) {
-  return new Promise(function(resolve, reject) {
-      setTimeout(function(){
-          resolve("延时函数启动，延迟"+_xms);
-      },_xms);
-  });
-}
+// 获取时间
+let nowDate = new Date();
+let mth = nowDate.getMonth()+1;
+let day = nowDate.getDate();
+
+// 按时间创建文件夹
+fs.mkdir(`./img/${mth}-${day}`, (err) => {
+  if(err) console.log('未创建成功，可能是文件夹已存在'); // 如果出现错误就抛出错误信息
+  else
+  console.log('文件夹创建成功');
+});
 
 // 正则匹配函数,提取/img/后的内容
 function urlMatch(str) {
@@ -24,10 +27,10 @@ function getImg(url) {
   var fileName = url.slice(-11);
   request(url+'.png',function (error, response, data) {
     if (data.includes('<h1>404 Not Found</h1>')) {
-     request2(url+'.jpg').pipe(fs.createWriteStream(`./img/${fileName}.jpg`));
+     request2(url+'.jpg').pipe(fs.createWriteStream(`./img/${mth}-${day}/${fileName}.jpg`));
     }
     else {
-     request2(url+'.png').pipe(fs.createWriteStream(`./img/${fileName}.png`));
+     request2(url+'.png').pipe(fs.createWriteStream(`./img/${mth}-${day}/${fileName}.png`));
     }
  });
 }
